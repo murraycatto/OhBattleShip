@@ -1,0 +1,17 @@
+.ship-board tr td.hit{
+  background: #008542;
+  color: #fff;
+}
+.ship-board tr td{
+  padding: 20px !important;
+  cursor: pointer;
+}
+.ship-board tr td.miss{
+  background: #691e1c;
+  color: #fff;
+}
+.ship-board tr td{
+  border: 1px solid #c3c3c3;
+  transition: all 1s;
+  background: #fff;
+}
