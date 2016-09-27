@@ -5,12 +5,12 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, class: "form-control"
   .field
     = f.label :email
-    = f.text_field :email
+    = f.text_field :email, class: "form-control"
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: "btn btn-success pull-right"
+    = link_to 'Previous Games', users_path, class: "btn btn-default pull-left"

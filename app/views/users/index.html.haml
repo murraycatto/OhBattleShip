@@ -1,11 +1,10 @@
-%h1 Listing Active Games
+%h1 Listing Previous Games
 
-%table
+%table.table.table-hover
   %thead
     %tr
       %th Name
       %th Email
-      %th
       %th
       %th
 
@@ -14,6 +13,6 @@
       %tr
         %td= user.name
         %td= user.email
-        %td= link_to 'Resume Game', game_path(user)
+        %td= link_to 'Resume Game', game_path(user), class: "btn btn-info"
 %br
-= link_to 'New Game', new_user_path
+= link_to 'New Game', new_user_path, class: "btn btn-success"

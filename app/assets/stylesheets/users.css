@@ -1,17 +1,54 @@
+.clear-10{
+  height: 10px;
+  clear: both;
+}
+.btn.btn-success,.btn.btn-info{
+  color: #fff;
+}
+#error_explanation{
+  max-width: 100%;
+}
+.center{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  float: none;
+}
 .ship-board tr td.hit{
-  background: #008542;
+  background:  #248924;
+  color: #fff;
+}
+#notice{
+  color: #248924;
+  font-size: 20px;
+  padding: 0px !important;
+  margin: 0px;
+}
+.logo{
+  max-width: 200px;
+}
+.ship-board{
+  box-shadow: 2px 2px 2px #444;
+}
+.ship-board tr td.miss{
+  background: #cc0000;
   color: #fff;
 }
 .ship-board tr td{
   padding: 20px !important;
   cursor: pointer;
-}
-.ship-board tr td.miss{
-  background: #691e1c;
-  color: #fff;
-}
-.ship-board tr td{
   border: 1px solid #c3c3c3;
-  transition: all 1s;
+  transition: all .5s;
   background: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+.table-striped > tbody > tr{
+  background: #fff;
+}
+.table-striped > tbody > tr:nth-of-type(2n+1){
+  background-color: #c3c3c3;
+}
+.table-striped > tbody{
+  border: 3px solid #c3c3c3;
 }
