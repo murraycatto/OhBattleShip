@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 # Haml
 gem "haml-rails", "~> 0.9"
-
+#rest-client
 gem "rest-client"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

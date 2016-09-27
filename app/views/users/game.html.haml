@@ -1,12 +1,24 @@
 %p#notice= notice
-
+%div#user_id{data:{id:"#{@user.id}"}}
+%div#authenticity_token{data:{token:"#{form_authenticity_token}"}}
 %p
   %b Name:
   = @user.name
 %p
   %b Email:
   = @user.email
-
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+%table.table
+  - for x in 0..9
+    %tr
+      - for y in 0..9
+        - nuke = @nukes.find_by(x: x, y:y)
+        - nuke_class = ""
+        - if !nuke.nil?
+          - nuke_class = nuke.status
+        %td{id:"#{x}-#{y}",class:"#{nuke_class}",onclick: "nuke(#{x},#{y});"}
+          %b
+            X:
+          = x
+          %b
+            Y:
+          = y

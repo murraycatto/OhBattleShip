@@ -1,6 +1,6 @@
 require 'rest-client'
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :game]
 
 
   # GET /users
@@ -10,25 +10,42 @@ class UsersController < ApplicationController
 
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-
-  end
-  # GET /users/1
-  # GET /users/1.json
+  # GET /game/1
+  # GET /game/1.json
   def game
-    @user = User.find(params[:id])
+    @nukes = Nuke.where(user_id:params[:id])
+  end
 
+  # Post /nuke
+  def nuke
+    @user = User.find(params[:user_id])
+    x = params[:x]
+    y = params[:y]
+    begin
+      nuke_response = RestClient.post "http://battle.platform45.com/nuke", {'id' => @user.game_id, "x"=>x, "y"=>y}.to_json, {content_type: :json, accept: :json}
+    rescue RestClient::ExceptionWithResponse => e
+      nuke_response = e.response
+    end
+    puts "Response"
+    puts nuke_response
+    puts "Response"
+    respond_to do |format|
+      if nuke_response.code == 200
+        json_reponse = JSON.parse(nuke_response)
+        @nuke = Nuke.new(:user_id=>@user.id,:x=>x,:y=>y,:status=>json_reponse["status"])
+        if @nuke.save
+          format.json { render :nuke}
+        else
+          format.json { render json: @nuke.errors, status: :unprocessable_entity }
+        end
+
+      end
+    end
   end
 
   # GET /users/new
   def new
     @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
   end
 
   # POST /users
@@ -46,7 +63,7 @@ class UsersController < ApplicationController
         game_id = json_reponse["id"]
         @user.game_id = game_id
         if @user.save
-          format.html { redirect_to @user, notice: 'User was successfully created.' }
+          format.html { redirect_to game_path(@user), notice: 'Let the games begin' }
           format.json { render :show, status: :created, location: @user }
         else
           format.html { render :new }
@@ -71,16 +88,6 @@ class UsersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

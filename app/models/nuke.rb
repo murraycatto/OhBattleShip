@@ -1,0 +1,2 @@
+class Nuke < ApplicationRecord
+end
