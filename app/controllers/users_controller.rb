@@ -15,11 +15,16 @@ class UsersController < ApplicationController
   def show
 
   end
+  # GET /users/1
+  # GET /users/1.json
+  def game
+    @user = User.find(params[:id])
+
+  end
 
   # GET /users/new
   def new
     @user = User.new
-
   end
 
   # GET /users/1/edit
@@ -31,13 +36,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     begin
-      response = RestClient.post "http://battle.platform45.com/register", {'name' => @user.name,"email" =>@user.email}.to_json, {content_type: :json, accept: :json}
+      battle_response = RestClient.post "http://battle.platform45.com/register", {'name' => @user.name,"email" =>@user.email}.to_json, {content_type: :json, accept: :json}
     rescue RestClient::ExceptionWithResponse => e
-      response = e.response
+      battle_response = e.response
     end
     respond_to do |format|
-      if response.code == 200
-        json_reponse = JSON.parse(response)
+      if battle_response.code == 200
+        json_reponse = JSON.parse(battle_response)
         game_id = json_reponse["id"]
         @user.game_id = game_id
         if @user.save
