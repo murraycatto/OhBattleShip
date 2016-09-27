@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Ship.create(name: 'Carrier', quantity: 1)
-Ship.create(name: 'Battleship', quantity: 4)
-Ship.create(name: 'Destroyer', quantity: 1)
-Ship.create(name: 'Submarine', quantity: 2)
-Ship.create(name: 'Patrol Boat', quantity: 2)
+Ship.find_or_create_by(name: 'Carrier', quantity: 1)
+Ship.find_or_create_by(name: 'Battleship', quantity: 1)
+Ship.find_or_create_by(name: 'Destroyer', quantity: 1)
+Ship.find_or_create_by(name: 'Submarine', quantity: 2)
+Ship.find_or_create_by(name: 'Patrol Boat', quantity: 2)

@@ -14,7 +14,25 @@ class UsersController < ApplicationController
   # GET /game/1.json
   def game
     @nukes = Nuke.where(user_id:params[:id])
+    @ships = Ship.all
+    @ships_sunk = ShipsSunk.where(user_id:params[:id])
   end
+
+  # GET /game_status/1.json
+  def game_status
+    @user = User.find(params[:user_id])
+    render :layout => false
+  end
+
+  # GET /ships_sunk/
+  def ships_sunk
+    @ships = Ship.all
+    @ships_sunk = ShipsSunk.where(user_id:params[:user_id])
+    render :layout => false
+  end
+
+
+
 
   # Post /nuke
   def nuke
@@ -44,7 +62,6 @@ class UsersController < ApplicationController
           end
           @user.save
         end
-        @ships_sunk = ShipsSunk.where(user_id:@user.id)
         @nuke = Nuke.new(:user_id=>@user.id,:x=>x,:y=>y,:status=>json_reponse["status"])
         if @nuke.save
           format.json { render :nuke}
@@ -84,20 +101,6 @@ class UsersController < ApplicationController
       else
         @user.errors.add(:base, :not_implemented, message: "Server error")
         format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

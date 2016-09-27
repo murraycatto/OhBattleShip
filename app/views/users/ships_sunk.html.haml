@@ -1,0 +1,12 @@
+- @ships.each do |ship|
+  %div.col-lg-3
+    %p
+      %b Name:
+      = ship.name
+    %p
+      %b Quantity:
+      - ship_sunk = @ships_sunk.find_by(ship_id:ship.id)
+      - quantity = ship.quantity
+      - if !ship_sunk.nil?
+        - quantity = quantity-1
+      = quantity

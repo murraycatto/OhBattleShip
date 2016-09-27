@@ -1,12 +1,11 @@
 %p#notice= notice
 %div#user_id{data:{id:"#{@user.id}"}}
 %div#authenticity_token{data:{token:"#{form_authenticity_token}"}}
-%p
-  %b Name:
-  = @user.name
-%p
-  %b Email:
-  = @user.email
+%div#game_status.row
+  = render :file => '/users/game_status'
+%div#ships_sunk.row
+  = render :file => '/users/ships_sunk'
+
 %table.table
   - for x in 0..9
     %tr
