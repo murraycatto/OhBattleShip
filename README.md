@@ -2,7 +2,7 @@
 
 Requirements:
 
-* MySQl
+* MySQL
 
 Setup:
 
@@ -13,7 +13,7 @@ Setup:
 * rake db:create
 * rake db:migrate
 * rake db:seed
-* rails s 
+* rails s
 
 
 # Enjoy :)

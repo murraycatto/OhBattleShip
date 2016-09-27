@@ -3,6 +3,14 @@
 %div#authenticity_token{data:{token:"#{form_authenticity_token}"}}
 %div.row
   %div.col-sm-6
+    %h3
+      %b
+        Name:
+      = @user.name
+    %h3
+      %b
+        Email:
+      = @user.email
     %div#game_status
       = render :file => '/users/game_status'
   %div.col-sm-6

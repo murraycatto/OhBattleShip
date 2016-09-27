@@ -9,8 +9,14 @@
       %td
         = ship.name
       %td
-        - ship_sunk = @ships_sunk.find_by(ship_id:ship.id)
+        - ship_sunk = @ships_sunk.where(ship_id:ship.id)
         - quantity = ship.quantity
         - if !ship_sunk.nil?
-          - quantity = quantity-1
+          - ship_sunk.each do |ship_sunk|
+            - quantity = quantity-1
         = quantity
+  %tr
+    %td
+      Total Nukes:
+    %td
+      = @nukes.count

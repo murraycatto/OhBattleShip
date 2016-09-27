@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   def ships_sunk
     @ships = Ship.all
     @ships_sunk = ShipsSunk.where(user_id:params[:user_id])
+    @nukes = Nuke.where(user_id:params[:user_id])
     render :layout => false
   end
 

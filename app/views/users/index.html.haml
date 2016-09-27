@@ -5,6 +5,7 @@
     %tr
       %th Name
       %th Email
+      %th Game Status
       %th
       %th
 
@@ -13,6 +14,21 @@
       %tr
         %td= user.name
         %td= user.email
-        %td= link_to 'Resume Game', game_path(user), class: "btn btn-info"
+        %td
+          - if user.game_status == 0
+            %span
+              Lost
+            - link_text = 'View Game'
+          - elsif user.game_status == 1
+            %span
+              Won
+            - link_text = 'View Game'
+          - else
+            %span
+              Ongoing
+            - link_text = 'Resume Game'
+
+
+        %td= link_to link_text, game_path(user), class: "btn btn-info"
 %br
 = link_to 'New Game', new_user_path, class: "btn btn-success"
