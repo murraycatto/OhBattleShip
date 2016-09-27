@@ -1,0 +1,2 @@
+class ShipsSunk < ApplicationRecord
+end
