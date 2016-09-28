@@ -1,31 +1,6 @@
-.clear-10{
-  height: 10px;
-  clear: both;
-}
-.btn.btn-success,.btn.btn-info{
-  color: #fff;
-}
-#error_explanation{
-  max-width: 100%;
-}
-.center{
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  float: none;
-}
 .ship-board tr td.hit{
   background:  #248924;
   color: #fff;
-}
-#notice{
-  color: #248924;
-  font-size: 20px;
-  padding: 0px !important;
-  margin: 0px;
-}
-.logo{
-  max-width: 200px;
 }
 .ship-board{
   box-shadow: 2px 2px 2px #444;
@@ -33,6 +8,12 @@
 .ship-board tr td.miss{
   background: #cc0000;
   color: #fff;
+}
+span.lost{
+  color: #cc0000;
+}
+span.won{
+  color: #248924;
 }
 .ship-board tr td{
   padding: 20px !important;

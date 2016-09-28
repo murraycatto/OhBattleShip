@@ -3,11 +3,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :game]
 
 
-  # GET /users
-  # GET /users.json
+  # GET /games
+  # GET /games.json
   def index
-    @users = User.all
-
+    @users = User.order(:game_status)
   end
 
   # GET /game/1
@@ -73,13 +72,12 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/new
+  # GET /game/new
   def new
     @user = User.new
   end
 
-  # POST /users
-  # POST /users.json
+  # POST /games
   def create
     @user = User.new(user_params)
     begin
@@ -87,23 +85,18 @@ class UsersController < ApplicationController
     rescue RestClient::ExceptionWithResponse => e
       battle_response = e.response
     end
-    respond_to do |format|
-      if battle_response.code == 200
-        json_reponse = JSON.parse(battle_response)
-        game_id = json_reponse["id"]
-        @user.game_id = game_id
-        if @user.save
-          format.html { redirect_to game_path(@user), notice: 'Let the games begin' }
-          format.json { render :show, status: :created, location: @user }
-        else
-          format.html { render :new }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
+    if battle_response.code == 200
+      json_reponse = JSON.parse(battle_response)
+      game_id = json_reponse["id"]
+      @user.game_id = game_id
+      if @user.save
+        redirect_to game_path(@user), notice: 'Let the games begin'
       else
-        @user.errors.add(:base, :not_implemented, message: "Server error")
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render :new
       end
+    else
+      @user.errors.add(:base, :not_implemented, message: "Server error")
+      render :new
     end
   end
 

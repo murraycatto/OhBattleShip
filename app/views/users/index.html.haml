@@ -7,7 +7,6 @@
       %th Email
       %th Game Status
       %th
-      %th
 
   %tbody
     - @users.each do |user|
@@ -16,11 +15,11 @@
         %td= user.email
         %td
           - if user.game_status == 0
-            %span
+            %span.lost
               Lost
             - link_text = 'View Game'
           - elsif user.game_status == 1
-            %span
+            %span.won
               Won
             - link_text = 'View Game'
           - else
@@ -30,5 +29,3 @@
 
 
         %td= link_to link_text, game_path(user), class: "btn btn-info"
-%br
-= link_to 'New Game', new_user_path, class: "btn btn-success"
