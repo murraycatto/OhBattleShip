@@ -41,6 +41,9 @@ group :development, :test do
   gem 'rspec-rails'
   # Use mysql as the database for Active Record
   gem 'mysql2', '>= 0.3.18', '< 0.5'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'guard-rspec'
 end
 
 group :development do
