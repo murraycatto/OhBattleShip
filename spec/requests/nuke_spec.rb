@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe "Nukes" do
 
-  describe "POST /Nuke.json" do
+  describe "POST /nuke.json" do
     it "creates a game then fires a nuke" do
-      visit new_user_path
+      visit new_game_path
       fill_in('Name', :with => 'Murray')
       fill_in('Email', :with => 'Murraycatto@live.co.za')
       click_on('Save')
@@ -16,5 +16,5 @@ describe "Nukes" do
       json_reponse["status"].should be_in(["hit", "miss"])
     end
   end
-  
+
 end
