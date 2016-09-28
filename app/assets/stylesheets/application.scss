@@ -15,6 +15,8 @@
  */
  body{
    margin: 0px;
+   background-image: url(image-path('background.jpg'));
+   background-size: 100%;
  }
  .clear-10{
    height: 10px;
@@ -52,9 +54,7 @@
 .panel-primary > .panel-heading{
   border-radius: 0px;
 }
-body{
-  background-image: url(image-path('background.jpg'));
-}
+
 h1,h2,h3,h4{
   color: #fff;
 }
