@@ -190,6 +190,7 @@ section#games{
   background: #18BC9C;
   color: #fff;
 }
+
 section#game{
   background: #CCB2A3;
   padding-top: 200px;
@@ -198,12 +199,20 @@ section#game{
 #game table.table-striped{
   min-width: 400px;
 }
-#game table.table-striped td,th{
-  text-align: left;
+#game table.table-striped td,#game table.table-striped th{
+  text-align: left !important;
   padding: 5px;
 }
 
 @media (max-width: 767px) {
+  #new_game #new_user{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .navbar-custom .navbar-nav li a{
+    text-align: right;
+    padding-right: 15px;
+  }
   section {
     padding: 75px 0;
   }

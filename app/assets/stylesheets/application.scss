@@ -23,8 +23,8 @@
  *:focus,*:active, a:focus,a:active{
    outline: none !important;
  }
- .logo{
-   max-width: 100px;
+ .logo img{
+   max-width: 100px !important;
  }
  .btn.btn-success,.btn.btn-info{
    color: #fff;
