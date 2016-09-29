@@ -29,11 +29,17 @@ class NukesController < ApplicationController
           end
           @user.save
         end
-        @nuke = Nuke.new(:user_id=>@user.id,:x=>x,:y=>y,:status=>json_reponse["status"])
-        if @nuke.save
+
+        if json_reponse.key?("error")
+          @nuke = nil
           format.json { render :nuke}
         else
-          format.json { render json: @nuke.errors, status: :unprocessable_entity }
+          @nuke = Nuke.new(:user_id=>@user.id,:x=>x,:y=>y,:status=>json_reponse["status"])
+          if @nuke.save
+            format.json { render :nuke}
+          else
+            format.json { render json: @nuke.errors, status: :unprocessable_entity }
+          end
         end
       end
     end

@@ -1,1 +1,3 @@
-json.extract! @nuke, :id, :x, :y, :status
+if !@nuke.nil?
+  json.extract! @nuke, :id, :x, :y, :status
+end
