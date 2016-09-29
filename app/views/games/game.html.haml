@@ -14,10 +14,10 @@
             Email:
           = @user.email
         %div#game_status
-          = render :file => '/users/game_status'
+          = render :file => '/games/game_status'
       %div.col-sm-6
         %div#ships_sunk
-          = render :file => '/users/ships_sunk'
+          = render :file => '/games/ships_sunk'
     %div.clear-10
     %table.table.ship-board
       - for x in -1..9
