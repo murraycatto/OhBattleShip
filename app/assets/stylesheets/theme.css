@@ -78,8 +78,24 @@ hr.star-primary {
   border-color: white;
 }
 .form-control::-moz-placeholder,
+.form-control::-webkit-input-placeholder,
+.form-control::-ms-input-placeholder,
 .form-control{
-    color: #fff;
+  color: #fff;
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color:    #fff !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    #fff !important;
+  opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    #fff !important;
+  opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:    #fff !important;
 }
 hr.star-primary {
   border-color: #fff;
