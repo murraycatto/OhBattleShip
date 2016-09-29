@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Oh Battle Ship
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{:href => "https://fonts.googleapis.com/css?family=Montserrat:400,700", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic", :rel => "stylesheet", :type => "text/css"}/
+  %body
+    %nav#mainNav.navbar.navbar-default.navbar-fixed-top.navbar-custom
+      .container
+        .navbar-header.page-scroll
+          %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            Menu
+            %i.fa.fa-bars
+          = link_to image_tag("logo"), root_path, class: "navbar-brand logo"
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              = link_to 'New Game', new_user_path
+            %li
+              = link_to 'Previous Games', users_path
+
+
+
+    = yield

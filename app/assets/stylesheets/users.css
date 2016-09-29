@@ -1,24 +1,29 @@
 .ship-board tr td.hit{
-  background:  #248924;
+  background:  #18BC9C;
   color: #fff;
 }
-.ship-board{
-  box-shadow: 2px 2px 2px #444;
-}
+
 .ship-board tr td.miss{
-  background: #cc0000;
+  background: #ba4c63;
   color: #fff;
 }
 span.lost{
-  color: #cc0000;
+  color: #ba4c63;
+  font-weight: 600;
 }
 span.won{
-  color: #248924;
+  color: #18BC9C;
+}
+.ship-board {
+  color: #334D5C;
+}
+.ship-board  > tbody > tr > td{
+  border: 4px solid #334D5C;
 }
 .ship-board tr td{
   padding: 20px !important;
   cursor: pointer;
-  border: 1px solid #c3c3c3;
+  border: 4px solid #334D5C;
   transition: all .5s;
   background: #fff;
   font-weight: bold;
@@ -28,8 +33,9 @@ span.won{
   background: #fff;
 }
 .table-striped > tbody > tr:nth-of-type(2n+1){
-  background-color: #c3c3c3;
+  background-color: #334D5C;
+  color: #fff;
 }
 .table-striped > tbody{
-  border: 3px solid #c3c3c3;
+  border: 3px solid #334D5C;
 }

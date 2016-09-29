@@ -1,38 +1,46 @@
-%p#notice= notice
-%div#user_id{data:{id:"#{@user.id}"}}
-%div#authenticity_token{data:{token:"#{form_authenticity_token}"}}
-%div.row
-  %div.col-sm-6
-    %h3
-      %b
-        Name:
-      = @user.name
-    %h3
-      %b
-        Email:
-      = @user.email
-    %div#game_status
-      = render :file => '/users/game_status'
-  %div.col-sm-6
-    %div#ships_sunk
-      = render :file => '/users/ships_sunk'
-%div.clear-10
-%table.table.ship-board
-  - for x in -1..9
-    %tr
-      - for y in -1..9
-        - nuke = @nukes.find_by(x: x, y:y)
-        - nuke_class = ""
-        - on_click = ""
-        - if !nuke.nil?
-          - nuke_class = nuke.status
-        - else
-          - if x > -1 and y > -1
-            - on_click = "nuke(#{x},#{y});"
-        %td{id:"#{x}-#{y}",class:"#{nuke_class}",onclick: "#{on_click}"}
-          -if x == -1
-            - if y > -1
-              = y
-          -if y == -1
-            - if x > -1
-              = x
+%section#game
+  .container
+
+    %div#user_id{data:{id:"#{@user.id}"}}
+    %div#authenticity_token{data:{token:"#{form_authenticity_token}"}}
+    %div.row
+      %div.col-sm-6
+        %h3
+          %b
+            Name:
+          = @user.name
+        %h3
+          %b
+            Email:
+          = @user.email
+        %div#game_status
+          = render :file => '/users/game_status'
+      %div.col-sm-6
+        %div#ships_sunk
+          = render :file => '/users/ships_sunk'
+    %div.clear-10
+    %table.table.ship-board
+      - for x in -1..9
+        %tr
+          - for y in -1..9
+            - nuke = @nukes.find_by(x: x, y:y)
+            - nuke_class = ""
+            - on_click = ""
+            - icon = '<i class="fa "></i>'.html_safe
+            - if !nuke.nil?
+              - nuke_class = nuke.status
+              - if nuke.status == "hit"
+                - icon = '<i class="fa fa-check"></i>'.html_safe
+              -elsif  nuke.status == "miss"
+                - icon = '<i class="fa fa-times"></i>'.html_safe
+            - else
+              - if x > -1 and y > -1
+                - on_click = "nuke(#{x},#{y});"
+            %td{id:"#{x}-#{y}",class:"#{nuke_class}",onclick: "#{on_click}"}
+              -if x == -1
+                - if y > -1
+                  = y
+              -if y == -1
+                - if x > -1
+                  = x
+              = icon

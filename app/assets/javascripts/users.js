@@ -14,6 +14,12 @@ function nuke(x,y){
 	}) .done(function( data ) {
     $("#"+x+"-"+y).addClass(data.status);
     $("#"+x+"-"+y).prop('onclick',null);
+    if(data.status == "hit"){
+      $("#"+x+"-"+y)['0'].innerHTML = '<i class="fa fa-check"></i>';
+    }else if(data.status == "miss"){
+      $("#"+x+"-"+y)['0'].innerHTML = '<i class="fa fa-times"></i>';
+    }
+
     getShipsSunk();
     getGameStatus();
 	});
