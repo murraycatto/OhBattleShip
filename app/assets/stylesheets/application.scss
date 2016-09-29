@@ -24,7 +24,7 @@
    outline: none !important;
  }
  .logo{
-   max-width: 200px;
+   max-width: 100px;
  }
  .btn.btn-success,.btn.btn-info{
    color: #fff;
@@ -52,9 +52,7 @@
 .panel-primary > .panel-heading{
   border-radius: 0px;
 }
-body{
-  background-image: url(image-path('background.jpg'));
-}
+
 h1,h2,h3,h4{
   color: #fff;
 }

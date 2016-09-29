@@ -1,31 +1,36 @@
-%h1 Listing Previous Games
+%section#games
+  .container
+    .row
+      .col-lg-12.text-center
+        %h2 Listing Previous Games
+        %hr.list-primary/
 
-%table.table.table-hover
-  %thead
-    %tr
-      %th Name
-      %th Email
-      %th Game Status
-      %th
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th Game Status
+          %th
 
-  %tbody
-    - @users.each do |user|
-      %tr
-        %td= user.name
-        %td= user.email
-        %td
-          - if user.game_status == 0
-            %span.lost
-              Lost
-            - link_text = 'View Game'
-          - elsif user.game_status == 1
-            %span.won
-              Won
-            - link_text = 'View Game'
-          - else
-            %span
-              Ongoing
-            - link_text = 'Resume Game'
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.name
+            %td= user.email
+            %td
+              - if user.game_status == 0
+                %span.lost
+                  Lost
+                - link_text = 'View Game'
+              - elsif user.game_status == 1
+                %span.won
+                  Won
+                - link_text = 'View Game'
+              - else
+                %span
+                  Ongoing
+                - link_text = 'Resume Game'
 
 
-        %td= link_to link_text, game_path(user), class: "btn btn-info"
+            %td= link_to link_text, game_path(user), class: "btn btn-primary pull-right"
