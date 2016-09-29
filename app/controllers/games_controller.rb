@@ -1,7 +1,6 @@
 require 'rest-client'
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :game]
-
+class GamesController < ApplicationController
+  before_action :set_user, only: [:game]
 
   # GET /games
   # GET /games.json
@@ -29,47 +28,6 @@ class UsersController < ApplicationController
     @ships_sunk = ShipsSunk.where(user_id:params[:user_id])
     @nukes = Nuke.where(user_id:params[:user_id])
     render :layout => false
-  end
-
-
-
-
-  # Post /nuke
-  def nuke
-    @user = User.find(params[:user_id])
-    x = params[:x]
-    y = params[:y]
-    begin
-      nuke_response = RestClient.post "http://battle.platform45.com/nuke", {'id' => @user.game_id, "x"=>x, "y"=>y}.to_json, {content_type: :json, accept: :json}
-    rescue RestClient::ExceptionWithResponse => e
-      nuke_response = e.response
-    end
-    puts "Response"
-    puts nuke_response
-    puts "Response"
-    respond_to do |format|
-      if nuke_response.code == 200
-        json_reponse = JSON.parse(nuke_response)
-        if json_reponse.key?("sunk")
-          ship = Ship.find_by(name:json_reponse["sunk"])
-          ShipsSunk.create(user_id:@user.id,ship_id:ship.id)
-        end
-        if json_reponse.key?("game_status")
-          if json_reponse["game_status"] ==  "lost"
-            @user.game_status = 0
-          else
-            @user.game_status = 1
-          end
-          @user.save
-        end
-        @nuke = Nuke.new(:user_id=>@user.id,:x=>x,:y=>y,:status=>json_reponse["status"])
-        if @nuke.save
-          format.json { render :nuke}
-        else
-          format.json { render json: @nuke.errors, status: :unprocessable_entity }
-        end
-      end
-    end
   end
 
   # GET /game/new
