@@ -14,3 +14,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).on('turbolinks:load', function() {
+  initFloatingLables();
+});
+function initFloatingLables(){
+  $("body").on("input propertychange", ".floating-label-form-group", function(e) {
+      $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
+  }).on("focus", ".floating-label-form-group", function() {
+      $(this).addClass("floating-label-form-group-with-focus");
+  }).on("blur", ".floating-label-form-group", function() {
+      $(this).removeClass("floating-label-form-group-with-focus");
+  });
+  $("input.form-control").each(function(i,el){
+    if(!!$(el).val()){
+      $(el).parent().toggleClass("floating-label-form-group-with-value");
+    }
+  });
+}

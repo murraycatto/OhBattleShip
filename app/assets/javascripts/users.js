@@ -19,11 +19,11 @@ function nuke(x,y){
     }else if(data.status == "miss"){
       $("#"+x+"-"+y)['0'].innerHTML = '<i class="fa fa-times"></i>';
     }
-
     getShipsSunk();
     getGameStatus();
 	});
 }
+
 function getShipsSunk() {
   user_id = $("#user_id").data("id");
   $.ajax({
@@ -38,6 +38,7 @@ function getShipsSunk() {
     $("#ships_sunk")['0'].innerHTML = data;
 	});
 }
+
 function getGameStatus() {
   user_id = $("#user_id").data("id");
   $.ajax({

@@ -9,12 +9,12 @@
   .row.control-group
     .form-group.col-xs-12.floating-label-form-group.controls
       = f.label :name
-      = f.text_field :name, class: "form-control","data-validation-required-message" => "Please enter your name.", :placeholder => "Name", :required => "", :type => "text"
+      = f.text_field :name, class: "form-control", placeholder: "Name"
       %p.help-block.text-danger
   .row.control-group
     .form-group.col-xs-12.floating-label-form-group.controls
       = f.label :email
-      = f.text_field :email, class: "form-control","data-validation-required-message" => "Please enter your name.", :placeholder => "Email Address", :required => "", :type => "text"
+      = f.text_field :email, class: "form-control", placeholder: "Email Address"
   %br/
   .actions.row
     = f.submit 'Save', class: "btn btn-primary pull-right"
